@@ -363,6 +363,7 @@
     position: relative;
       /* make the header full-bleed (edge-to-edge) while kept inside the centered container */
       left: -33%;
+      right: -33%;
 
 background-image: url('/logo2.png');
 background-position: center;
