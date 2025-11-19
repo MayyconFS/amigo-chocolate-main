@@ -362,7 +362,7 @@
   .header-wrapper {
     position: relative;
       /* make the header full-bleed (edge-to-edge) while kept inside the centered container */
-      left: 30%;
+      left: 0%;
       /* right: -33%; */
 
 background-image: url('/logo2.png');
