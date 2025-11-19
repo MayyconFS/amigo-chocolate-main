@@ -1,13 +1,44 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
+// Fixed Supabase values (hardcoded as requested)
+const SUPABASE_URL = "https://gytnleabrjrbuogdgvhm.supabase.co";
+const SUPABASE_SERVICE_ROLE_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd5dG5sZWFicmpyYnVvZ2RndmhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM1NjIyNDMsImV4cCI6MjA3OTEzODI0M30.G-CGwRQ4Y5D1QGLanfjxPcfog8P4AZKJ2_31lLRKluY";
+
+// Helper to read env vars in multiple runtimes (Node, Deno, edge, bundlers)
+function getEnv(key: string): string {
+  // Node.js
+  if (typeof process !== "undefined" && (process as any).env && (process as any).env[key]) {
+    return (process as any).env[key];
+  }
+
+  // globalThis (some edge runtimes expose env on globalThis)
+  if (typeof globalThis !== "undefined" && (globalThis as any)[key]) {
+    return (globalThis as any)[key];
+  }
+
+  // Deno (kept as fallback for environments that still use it) - access via globalThis to avoid TS 'Deno' name error
+  const deno = (globalThis as any).Deno;
+  if (deno && deno.env && typeof deno.env.get === "function") {
+    return deno.env.get(key) ?? "";
+  }
+
+  // bundlers / Vite-style
+  if (typeof import.meta !== "undefined" && (import.meta as any).env && (import.meta as any).env[key]) {
+    return (import.meta as any).env[key];
+  }
+
+  return "";
+}
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
     "authorization, x-client-info, apikey, content-type",
 };
 
-serve(async (req) => {
+serve(async (req: Request) => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
@@ -36,8 +67,8 @@ serve(async (req) => {
     // }
 
     const supabaseClient = createClient(
-      Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+      SUPABASE_URL,
+      SUPABASE_SERVICE_ROLE_KEY
     );
 
     // Gerar token único
@@ -79,7 +110,7 @@ serve(async (req) => {
     }
 
     // Construir link
-    const frontendUrl = Deno.env.get("FRONTEND_URL") || "http://localhost:3000";
+    const frontendUrl = getEnv("FRONTEND_URL") || "http://localhost:3000";
     const link = `${frontendUrl}/participante/${token}`;
 
     return new Response(
@@ -99,10 +130,10 @@ serve(async (req) => {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       }
     );
-  } catch (error) {
+  } catch (error: any) {
     return new Response(
       JSON.stringify({
-        message: error.message || "Erro ao cadastrar participante",
+        message: error?.message || "Erro ao cadastrar participante",
       }),
       {
         status: 500,

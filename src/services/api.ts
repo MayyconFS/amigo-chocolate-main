@@ -76,7 +76,6 @@ export const registerParticipant = async (
       .from("participants")
       .insert({
         name: data.name.trim(),
-        email: data.email.trim().toLowerCase(),
         token: token,
         preferred_chocolate: data.preferredChocolate?.trim() || null,
         dislikes: data.dislikes?.trim() || null,

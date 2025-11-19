@@ -8,17 +8,12 @@ interface ParticipantFormProps {
 
 const ParticipantForm = ({ onSuccess }: ParticipantFormProps) => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [preferredChocolate, setPreferredChocolate] = useState("");
   const [dislikes, setDislikes] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const validateEmail = (email: string): boolean => {
-    // Validação básica de e-mail corporativo
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+  
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -45,7 +40,6 @@ const ParticipantForm = ({ onSuccess }: ParticipantFormProps) => {
     try {
       const response = await registerParticipant({
         name: name.trim(),
-        email: email.trim(),
         preferredChocolate: preferredChocolate.trim() || undefined,
         dislikes: dislikes.trim() || undefined,
       });

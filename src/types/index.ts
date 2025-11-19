@@ -24,7 +24,6 @@ export interface AdminConfig {
 
 export interface RegisterParticipantRequest {
   name: string;
-  email: string;
   preferredChocolate?: string;
   dislikes?: string;
 }
