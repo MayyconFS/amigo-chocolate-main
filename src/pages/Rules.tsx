@@ -38,13 +38,15 @@ const Rules = () => {
             <div className="rule-icon">🍫</div>
             <h2 className="rule-title">O Presente</h2>
             <p className="rule-description">
-              Prepare um presente especial para a pessoa que você tirou! Pode
-              ser um chocolate, um mimo, ou qualquer coisa que faça sentido para
-              vocês. O importante é o carinho e a surpresa.
+              O valor mínimo estabelecido para o Amigo Chocolate é 
+              de <strong> R$ 50,00</strong>, garantindo que todos recebam chocolates de 
+              qualidade equivalente e mantendo a experiência justa para 
+              todos os participantes. Prepare um presente especial para a 
+              pessoa que você tirou, dedicando atenção e cuidado na escolha.
             </p>
           </div>
 
-          <div className="rule-card">
+          {/* <div className="rule-card">
             <div className="rule-icon">👥</div>
             <h2 className="rule-title">Participação</h2>
             <p className="rule-description">
@@ -52,17 +54,18 @@ const Rules = () => {
               seu nome e e-mail corporativo. O sistema garante que ninguém tire
               a si mesmo no sorteio.
             </p>
-          </div>
+          </div> */}
 
-          <div className="rule-card">
-            <div className="rule-icon">📧</div>
-            <h2 className="rule-title">Notificações</h2>
+          {/* <div className="rule-card">
+            <div className="rule-icon">💸</div>
+            <h2 className="rule-title">Valor</h2>
             <p className="rule-description">
-              Quando o sorteio for realizado, você receberá um e-mail com seu
-              resultado. Mas não se preocupe, você sempre pode acessar seu link
-              único para ver quem você tirou.
+              O valor mínimo estabelecido para o Amigo Chocolate é de
+              <strong> R$ 50,00</strong>. Essa medida garante que todos recebam chocolates 
+              de qualidade equivalente, mantendo a experiência justa e 
+              agradável para todos os participantes.
             </p>
-          </div>
+          </div> */}
 
           <div className="rule-card ">
             <div className="rule-icon">⚠️</div>

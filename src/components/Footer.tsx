@@ -9,6 +9,7 @@ const Footer = () => {
         <Link to="/regras" className="footer-link">
           Regras do Jogo
         </Link>
+        <p></p>
       </div>
     </footer>
   );
