@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from "supabase";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import axios from "axios";
 
 // Helper to read env vars in multiple runtimes
@@ -34,7 +34,7 @@ interface EmailData {
   token: string;
 }
 
-serve(async (req) => {
+serve(async (req: Request) => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
@@ -69,7 +69,7 @@ serve(async (req) => {
       );
     }
 
-    const frontendUrl = Deno.env.get("FRONTEND_URL") || "http://localhost:3001";
+    const frontendUrl = getEnv("FRONTEND_URL") || "http://localhost:3001";
     const emailApiUrl = "https://api.erp.rainhadassete.com/api/Email/enviar";
 
     console.log("📧 Enviando emails em lote via API externa:", emailApiUrl);
