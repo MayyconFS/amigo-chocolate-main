@@ -93,7 +93,7 @@ const Home = () => {
       <span className="title-icon">
         Amigo Chocolate
       </span>
-      <span className="title-subtitle">Natal dos Ferreiraa</span>
+      <span className="title-subtitle">Natal dos Ferreira</span>
     </h1>
 
     <p className="home-description">
