@@ -1,10 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-// Fixed Supabase values (hardcoded as requested)
-const SUPABASE_URL = "https://gytnleabrjrbuogdgvhm.supabase.co";
-const SUPABASE_SERVICE_ROLE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd5dG5sZWFicmpyYnVvZ2RndmhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM1NjIyNDMsImV4cCI6MjA3OTEzODI0M30.G-CGwRQ4Y5D1QGLanfjxPcfog8P4AZKJ2_31lLRKluY";
+
 
 // Helper to read env vars in multiple runtimes (Node, Deno, edge, bundlers)
 function getEnv(key: string): string {
@@ -67,8 +64,8 @@ serve(async (req: Request) => {
     // }
 
     const supabaseClient = createClient(
-      SUPABASE_URL,
-      SUPABASE_SERVICE_ROLE_KEY
+      getEnv("SUPABASE_URL") || "",
+      getEnv("SUPABASE_SERVICE_KEY") || ""
     );
 
     // Gerar token único
