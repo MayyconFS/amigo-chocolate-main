@@ -80,6 +80,7 @@ const Home = () => {
   <div className="home-backgroud">
 
 
+
   </div>
   return (
     <div className="home-container">
