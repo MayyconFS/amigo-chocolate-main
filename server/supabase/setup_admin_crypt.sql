@@ -9,7 +9,7 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 -- Criar admin com senha hashada usando crypt
 -- Substitua 'sua_senha_aqui' pela senha desejada
 INSERT INTO admin (password_hash) 
-VALUES (crypt('sua_senha_aqui', gen_salt('bf', 10)))
+VALUES (crypt('1234', gen_salt('bf', 10)))
 ON CONFLICT DO NOTHING;
 
 -- Para verificar se foi criado:
