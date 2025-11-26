@@ -337,7 +337,7 @@
 .header-wrapper {
   position: relative;
   /* make the header full-bleed (edge-to-edge) while kept inside the centered container */
-  left: 55%;
+  left: 53%;
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
